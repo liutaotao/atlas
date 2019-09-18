@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds" debug="false">
+	<contextName>atlas-web</contextName>
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>[%contextName]%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level
+				%logger{36} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="coreLog"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>./logs/atlas-web.log</file>
+	    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">   
+	      <fileNamePattern>./logs/atlas-web.%d{yyyy-MM-dd}.log</fileNamePattern>   
+	      <maxHistory>30</maxHistory>    
+	    </rollingPolicy>   
+
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%-20(%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread]) %-5level %logger{80} -
+				%msg%n</pattern>
+		</layout>
+	</appender>
+
+
+
+	<root level="debug">
+	</root>
+	<logger name="com.yetoop" level="debug" additivity="true">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="coreLog" />
+	</logger>
+
+	<logger name="org.springframework.web" level="info" additivity="true">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="coreLog" />		
+	</logger>
+	<logger name="org.mybatis" level="info" additivity="false">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="coreLog" />		
+	</logger>
+	<logger name="org.apache" level="INFO" additivity="false">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="coreLog" />		
+	</logger>
+	<logger name="com.yetoop.cloud.atlas.domain.persistence" level="INFO" additivity="false">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="coreLog" />		
+	</logger>
+	<logger name="com.alibaba.druid" level="INFO" additivity="false">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="coreLog" />		
+	</logger>
+</configuration>

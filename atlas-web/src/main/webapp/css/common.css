@@ -1,0 +1,154 @@
+html{
+	font-size:62.5%;
+}
+body, div, ol, ul, h1, h2, h3, h4, h5, h6, p, th, td, dl, dd, form, iframe, input, textarea, select, label, article, aside, footer, header, menu, nav, section, time, audio, video {
+    margin: 0;
+    padding: 0;
+}
+
+/* line 8, ../scss/_reset.scss */
+article, aside, footer, header, hgroup, nav, section, audio, canvas, video, img {
+    display: block;
+}
+
+/* line 9, ../scss/_reset.scss */
+body {
+    font-size:14px;
+    font-family:  'Microsoft Yahei','STXihei', 'Helvetica Neue', 'helvetica', 'arial';
+    -webkit-text-size-adjust: 14px;
+    -ms-text-size-adjust: 14px;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4);
+    background-color:#F6F6F6;
+}
+
+/* line 10, ../scss/_reset.scss */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    color:#000;
+}
+
+/* line 11, ../scss/_reset.scss */
+textarea {
+    resize: none;
+}
+
+/* line 12, ../scss/_reset.scss */
+iframe, img {
+    border: 0;
+}
+
+/* line 13, ../scss/_reset.scss */
+ul, ol {
+    list-style: none;
+}
+
+/* line 14, ../scss/_reset.scss */
+input, select, textarea {
+    outline: 0;
+    -webkit-user-modify: read-write-plaintext-only;
+}
+
+/* line 15, ../scss/_reset.scss */
+input {
+    -webkit-appearance: none;
+}
+
+/* line 16, ../scss/_reset.scss */
+a {
+    text-decoration: none;
+}
+
+/* line 17, ../scss/_reset.scss */
+i, em {
+    font-style: normal;
+}
+
+/* line 18, ../scss/_reset.scss */
+.dis {
+    display: block;
+}
+
+/* line 19, ../scss/_reset.scss */
+.undis {
+    display: none;
+}
+
+/* line 20, ../scss/_reset.scss */
+.fl {
+    float: left;
+}
+
+/* line 21, ../scss/_reset.scss */
+.fr {
+    float: right;
+}
+
+/* line 24, ../scss/_reset.scss */
+.tc {
+    text-align: center;
+}
+
+/* line 25, ../scss/_reset.scss */
+.tl {
+    text-align: left;
+}
+
+/* line 26, ../scss/_reset.scss */
+.tr {
+    text-align: right;
+}
+
+/* line 28, ../scss/_reset.scss */
+.f12px {
+    font-size: 12px;
+}
+
+/* line 31, ../scss/_reset.scss */
+.f14px {
+    font-size: 14px;
+}
+
+/* line 34, ../scss/_reset.scss */
+.f16px {
+    font-size: 12px;
+}
+
+/* line 38, ../scss/_reset.scss */
+.mt10 {
+    margin-top: 10px;
+}
+
+/* line 39, ../scss/_reset.scss */
+.ml10 {
+    margin-left: 10px;
+}
+
+/* line 40, ../scss/_reset.scss */
+.mr10 {
+    margin-right: 10px;
+}
+
+/* line 41, ../scss/_reset.scss */
+.mb10 {
+    margin-bottom: 10px;
+}
+
+/* line 43, ../scss/_reset.scss */
+.mt-10 {
+    margin-top: -10px;
+}
+
+/* line 44, ../scss/_reset.scss */
+.ml-10 {
+    margin-left: -10px;
+}
+
+/* line 45, ../scss/_reset.scss */
+.mr-10 {
+    margin-right: -10px;
+}
+
+/* line 46, ../scss/_reset.scss */
+.mb-10 {
+    margin-bottom: -10px;
+}

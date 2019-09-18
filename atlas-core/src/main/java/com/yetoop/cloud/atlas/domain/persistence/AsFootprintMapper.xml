@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yetoop.cloud.atlas.domain.persistence.AsFootprintMapper">
+	<resultMap id="BaseResultMap" type="com.yetoop.cloud.atlas.domain.AsFootprint">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+		<result column="version" jdbcType="TIMESTAMP" property="version" />
+		<result column="track_id" jdbcType="INTEGER" property="trackId" />
+		<result column="artworks_id" jdbcType="INTEGER" property="artworksId" />
+		<result column="member_id" jdbcType="INTEGER" property="memberId" />
+		<result column="start_date" jdbcType="TIMESTAMP" property="startDate" />
+		<result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
+		<result column="detail_count" jdbcType="INTEGER" property="detailCount" />
+		<result column="detail_begin_date" jdbcType="TIMESTAMP"
+			property="detailBeginDate" />
+		<result column="detail_end_date" jdbcType="TIMESTAMP" property="detailEndDate" />
+		<result column="duration_time" jdbcType="INTEGER" property="durationTime" />
+		<result column="detail_time" jdbcType="INTEGER" property="detailTime" />
+		<result column="leave_count" jdbcType="INTEGER" property="leaveCount" />
+		<result column="back_count" jdbcType="INTEGER" property="backCount" />
+		<result column="share_count" jdbcType="INTEGER" property="shareCount" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, create_date, version, track_id, artworks_id, member_id,
+		start_date,
+		end_date,
+		detail_count, detail_begin_date, detail_end_date,
+		duration_time, detail_time,
+		leave_count,
+		back_count, share_count
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from as_footprint
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+
+	<insert id="insertSelective" parameterType="com.yetoop.cloud.atlas.domain.AsFootprint">
+		<selectKey keyProperty="id" resultType="int" order="AFTER">
+			SELECT
+			LAST_INSERT_ID();
+		</selectKey>
+		insert into as_footprint
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+			<if test="version != null">
+				version,
+			</if>
+			<if test="trackId != null">
+				track_id,
+			</if>
+			<if test="artworksId != null">
+				artworks_id,
+			</if>
+			<if test="memberId != null">
+				member_id,
+			</if>
+			<if test="startDate != null">
+				start_date,
+			</if>
+			<if test="endDate != null">
+				end_date,
+			</if>
+			<if test="detailCount != null">
+				detail_count,
+			</if>
+			<if test="detailBeginDate != null">
+				detail_begin_date,
+			</if>
+			<if test="detailEndDate != null">
+				detail_end_date,
+			</if>
+			<if test="durationTime != null">
+				duration_time,
+			</if>
+			<if test="detailTime != null">
+				detail_time,
+			</if>
+			<if test="leaveCount != null">
+				leave_count,
+			</if>
+			<if test="backCount != null">
+				back_count,
+			</if>
+			<if test="shareCount != null">
+				share_count,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="version != null">
+				#{version,jdbcType=TIMESTAMP},
+			</if>
+			<if test="trackId != null">
+				#{trackId,jdbcType=INTEGER},
+			</if>
+			<if test="artworksId != null">
+				#{artworksId,jdbcType=INTEGER},
+			</if>
+			<if test="memberId != null">
+				#{memberId,jdbcType=INTEGER},
+			</if>
+			<if test="startDate != null">
+				#{startDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="endDate != null">
+				#{endDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="detailCount != null">
+				#{detailCount,jdbcType=INTEGER},
+			</if>
+			<if test="detailBeginDate != null">
+				#{detailBeginDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="detailEndDate != null">
+				#{detailEndDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="durationTime != null">
+				#{durationTime,jdbcType=INTEGER},
+			</if>
+			<if test="detailTime != null">
+				#{detailTime,jdbcType=INTEGER},
+			</if>
+			<if test="leaveCount != null">
+				#{leaveCount,jdbcType=INTEGER},
+			</if>
+			<if test="backCount != null">
+				#{backCount,jdbcType=INTEGER},
+			</if>
+			<if test="shareCount != null">
+				#{shareCount,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.yetoop.cloud.atlas.domain.AsFootprint">
+		update as_footprint
+		<set>
+			<if test="createDate != null">
+				create_date = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="version != null">
+				version = #{version,jdbcType=TIMESTAMP},
+			</if>
+			<if test="trackId != null">
+				track_id = #{trackId,jdbcType=INTEGER},
+			</if>
+			<if test="artworksId != null">
+				artworks_id = #{artworksId,jdbcType=INTEGER},
+			</if>
+			<if test="memberId != null">
+				member_id = #{memberId,jdbcType=INTEGER},
+			</if>
+			<if test="startDate != null">
+				start_date = #{startDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="endDate != null">
+				end_date = #{endDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="detailCount != null">
+				detail_count = #{detailCount,jdbcType=INTEGER},
+			</if>
+			<if test="detailBeginDate != null">
+				detail_begin_date =
+				#{detailBeginDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="detailEndDate != null">
+				detail_end_date = #{detailEndDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="durationTime != null">
+				duration_time = #{durationTime,jdbcType=INTEGER},
+			</if>
+			<if test="detailTime != null">
+				detail_time = #{detailTime,jdbcType=INTEGER},
+			</if>
+			<if test="leaveCount != null">
+				leave_count = #{leaveCount,jdbcType=INTEGER},
+			</if>
+			<if test="backCount != null">
+				back_count = #{backCount,jdbcType=INTEGER},
+			</if>
+			<if test="shareCount != null">
+				share_count = #{shareCount,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+</mapper>

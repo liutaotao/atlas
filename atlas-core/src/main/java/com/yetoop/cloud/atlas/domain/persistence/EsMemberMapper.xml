@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yetoop.cloud.atlas.domain.persistence.EsMemberMapper">
+  <resultMap id="BaseResultMap" type="com.yetoop.cloud.atlas.domain.EsMember">
+    <id column="member_id" jdbcType="INTEGER" property="memberId" />
+    <result column="agentid" jdbcType="INTEGER" property="agentid" />
+    <result column="parentid" jdbcType="INTEGER" property="parentid" />
+    <result column="lv_id" jdbcType="INTEGER" property="lvId" />
+    <result column="uname" jdbcType="VARCHAR" property="uname" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="regtime" jdbcType="BIGINT" property="regtime" />
+    <result column="pw_answer" jdbcType="VARCHAR" property="pwAnswer" />
+    <result column="pw_question" jdbcType="VARCHAR" property="pwQuestion" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="birthday" jdbcType="BIGINT" property="birthday" />
+    <result column="advance" jdbcType="DECIMAL" property="advance" />
+    <result column="province_id" jdbcType="INTEGER" property="provinceId" />
+    <result column="city_id" jdbcType="INTEGER" property="cityId" />
+    <result column="region_id" jdbcType="INTEGER" property="regionId" />
+    <result column="town_id" jdbcType="INTEGER" property="townId" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="region" jdbcType="VARCHAR" property="region" />
+    <result column="town" jdbcType="VARCHAR" property="town" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="zip" jdbcType="VARCHAR" property="zip" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="point" jdbcType="INTEGER" property="point" />
+    <result column="mp" jdbcType="INTEGER" property="mp" />
+    <result column="QQ" jdbcType="VARCHAR" property="qq" />
+    <result column="msn" jdbcType="VARCHAR" property="msn" />
+    <result column="lastlogin" jdbcType="BIGINT" property="lastlogin" />
+    <result column="is_agent" jdbcType="INTEGER" property="isAgent" />
+    <result column="logincount" jdbcType="INTEGER" property="logincount" />
+    <result column="is_cheked" jdbcType="INTEGER" property="isCheked" />
+    <result column="registerip" jdbcType="VARCHAR" property="registerip" />
+    <result column="recommend_point_state" jdbcType="INTEGER" property="recommendPointState" />
+    <result column="last_send_email" jdbcType="INTEGER" property="lastSendEmail" />
+    <result column="info_full" jdbcType="INTEGER" property="infoFull" />
+    <result column="find_code" jdbcType="VARCHAR" property="findCode" />
+    <result column="face" jdbcType="VARCHAR" property="face" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="midentity" jdbcType="INTEGER" property="midentity" />
+    <result column="disabled" jdbcType="SMALLINT" property="disabled" />
+    <result column="store_id" jdbcType="INTEGER" property="storeId" />
+    <result column="is_store" jdbcType="INTEGER" property="isStore" />
+    <result column="wx_openid" jdbcType="VARCHAR" property="wxOpenid" />
+    <result column="wx_unionid" jdbcType="VARCHAR" property="wxUnionid" />
+    <result column="encrypt_key" jdbcType="VARCHAR" property="encryptKey" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" extends="BaseResultMap" type="com.yetoop.cloud.atlas.domain.EsMember">
+    <result column="remark" jdbcType="LONGVARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    member_id, agentid, parentid, lv_id, uname, email, password, regtime, pw_answer, 
+    pw_question, name, sex, birthday, advance, province_id, city_id, region_id, town_id, 
+    province, city, region, town, address, zip, mobile, tel, point, mp, QQ, msn, lastlogin, 
+    is_agent, logincount, is_cheked, registerip, recommend_point_state, last_send_email, 
+    info_full, find_code, face, nickname, midentity, disabled, store_id, is_store, wx_openid, 
+    wx_unionid, encrypt_key
+  </sql>
+  <sql id="Blob_Column_List">
+    remark
+  </sql>
+  <select id="selectByUnionid" resultMap="ResultMapWithBLOBs">
+  	select 
+  	<include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from es_member 
+    where wx_unionid = #{wxUnionid,jdbcType=VARCHAR}
+  </select>
+  <select id="queryMember" resultMap="ResultMapWithBLOBs">
+  	select 
+  	<include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from es_member 
+    where mobile = #{mobile,jdbcType=VARCHAR} 
+    and password = #{password,jdbcType=VARCHAR}
+  </select>
+  <select id="checkMobile" resultType="java.lang.Integer">
+  	select count(0) 
+  	from es_member 
+  	where mobile=#{mobile,jdbcType=VARCHAR} 
+  </select>
+  <select id="selectByEncryptKey" resultMap="ResultMapWithBLOBs">
+  	select 
+  	<include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from es_member 
+    where member_id = #{memberId,jdbcType=INTEGER} 
+    and encrypt_key = #{encryptKey,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from es_member
+    where member_id = #{memberId,jdbcType=INTEGER} 
+    and disabled = 0
+  </select>
+  <select id="selectByPhone" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from es_member
+    where mobile = #{mobile,jdbcType=VARCHAR}
+  </select>
+  <insert id="insertSelective" parameterType="com.yetoop.cloud.atlas.domain.EsMember">
+  	<selectKey keyProperty="memberId" resultType="int" order="AFTER">
+		SELECT
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into es_member
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="agentid != null">
+        agentid,
+      </if>
+      <if test="parentid != null">
+        parentid,
+      </if>
+      <if test="lvId != null">
+        lv_id,
+      </if>
+      <if test="uname != null">
+        uname,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="regtime != null">
+        regtime,
+      </if>
+      <if test="pwAnswer != null">
+        pw_answer,
+      </if>
+      <if test="pwQuestion != null">
+        pw_question,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="advance != null">
+        advance,
+      </if>
+      <if test="provinceId != null">
+        province_id,
+      </if>
+      <if test="cityId != null">
+        city_id,
+      </if>
+      <if test="regionId != null">
+        region_id,
+      </if>
+      <if test="townId != null">
+        town_id,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="region != null">
+        region,
+      </if>
+      <if test="town != null">
+        town,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="zip != null">
+        zip,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="tel != null">
+        tel,
+      </if>
+      <if test="point != null">
+        point,
+      </if>
+      <if test="mp != null">
+        mp,
+      </if>
+      <if test="qq != null">
+        QQ,
+      </if>
+      <if test="msn != null">
+        msn,
+      </if>
+      <if test="lastlogin != null">
+        lastlogin,
+      </if>
+      <if test="isAgent != null">
+        is_agent,
+      </if>
+      <if test="logincount != null">
+        logincount,
+      </if>
+      <if test="isCheked != null">
+        is_cheked,
+      </if>
+      <if test="registerip != null">
+        registerip,
+      </if>
+      <if test="recommendPointState != null">
+        recommend_point_state,
+      </if>
+      <if test="lastSendEmail != null">
+        last_send_email,
+      </if>
+      <if test="infoFull != null">
+        info_full,
+      </if>
+      <if test="findCode != null">
+        find_code,
+      </if>
+      <if test="face != null">
+        face,
+      </if>
+      <if test="nickname != null">
+        nickname,
+      </if>
+      <if test="midentity != null">
+        midentity,
+      </if>
+      <if test="disabled != null">
+        disabled,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="isStore != null">
+        is_store,
+      </if>
+      <if test="wxOpenid != null">
+        wx_openid,
+      </if>
+      <if test="wxUnionid != null">
+        wx_unionid,
+      </if>
+      <if test="encryptKey != null">
+        encrypt_key,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="memberId != null">
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="agentid != null">
+        #{agentid,jdbcType=INTEGER},
+      </if>
+      <if test="parentid != null">
+        #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="lvId != null">
+        #{lvId,jdbcType=INTEGER},
+      </if>
+      <if test="uname != null">
+        #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="regtime != null">
+        #{regtime,jdbcType=BIGINT},
+      </if>
+      <if test="pwAnswer != null">
+        #{pwAnswer,jdbcType=VARCHAR},
+      </if>
+      <if test="pwQuestion != null">
+        #{pwQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=BIGINT},
+      </if>
+      <if test="advance != null">
+        #{advance,jdbcType=DECIMAL},
+      </if>
+      <if test="provinceId != null">
+        #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null">
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="regionId != null">
+        #{regionId,jdbcType=INTEGER},
+      </if>
+      <if test="townId != null">
+        #{townId,jdbcType=INTEGER},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null">
+        #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="town != null">
+        #{town,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="zip != null">
+        #{zip,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="point != null">
+        #{point,jdbcType=INTEGER},
+      </if>
+      <if test="mp != null">
+        #{mp,jdbcType=INTEGER},
+      </if>
+      <if test="qq != null">
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="msn != null">
+        #{msn,jdbcType=VARCHAR},
+      </if>
+      <if test="lastlogin != null">
+        #{lastlogin,jdbcType=BIGINT},
+      </if>
+      <if test="isAgent != null">
+        #{isAgent,jdbcType=INTEGER},
+      </if>
+      <if test="logincount != null">
+        #{logincount,jdbcType=INTEGER},
+      </if>
+      <if test="isCheked != null">
+        #{isCheked,jdbcType=INTEGER},
+      </if>
+      <if test="registerip != null">
+        #{registerip,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendPointState != null">
+        #{recommendPointState,jdbcType=INTEGER},
+      </if>
+      <if test="lastSendEmail != null">
+        #{lastSendEmail,jdbcType=INTEGER},
+      </if>
+      <if test="infoFull != null">
+        #{infoFull,jdbcType=INTEGER},
+      </if>
+      <if test="findCode != null">
+        #{findCode,jdbcType=VARCHAR},
+      </if>
+      <if test="face != null">
+        #{face,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="midentity != null">
+        #{midentity,jdbcType=INTEGER},
+      </if>
+      <if test="disabled != null">
+        #{disabled,jdbcType=SMALLINT},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="isStore != null">
+        #{isStore,jdbcType=INTEGER},
+      </if>
+      <if test="wxOpenid != null">
+        #{wxOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="wxUnionid != null">
+        #{wxUnionid,jdbcType=VARCHAR},
+      </if>
+      <if test="encryptKey != null">
+        #{encryptKey,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yetoop.cloud.atlas.domain.EsMember">
+    update es_member
+    <set>
+      <if test="agentid != null">
+        agentid = #{agentid,jdbcType=INTEGER},
+      </if>
+      <if test="parentid != null">
+        parentid = #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="lvId != null">
+        lv_id = #{lvId,jdbcType=INTEGER},
+      </if>
+      <if test="uname != null">
+        uname = #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="regtime != null">
+        regtime = #{regtime,jdbcType=BIGINT},
+      </if>
+      <if test="pwAnswer != null">
+        pw_answer = #{pwAnswer,jdbcType=VARCHAR},
+      </if>
+      <if test="pwQuestion != null">
+        pw_question = #{pwQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=BIGINT},
+      </if>
+      <if test="advance != null">
+        advance = #{advance,jdbcType=DECIMAL},
+      </if>
+      <if test="provinceId != null">
+        province_id = #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null">
+        city_id = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="regionId != null">
+        region_id = #{regionId,jdbcType=INTEGER},
+      </if>
+      <if test="townId != null">
+        town_id = #{townId,jdbcType=INTEGER},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null">
+        region = #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="town != null">
+        town = #{town,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="zip != null">
+        zip = #{zip,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="point != null">
+        point = #{point,jdbcType=INTEGER},
+      </if>
+      <if test="mp != null">
+        mp = #{mp,jdbcType=INTEGER},
+      </if>
+      <if test="qq != null">
+        QQ = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="msn != null">
+        msn = #{msn,jdbcType=VARCHAR},
+      </if>
+      <if test="lastlogin != null">
+        lastlogin = #{lastlogin,jdbcType=BIGINT},
+      </if>
+      <if test="isAgent != null">
+        is_agent = #{isAgent,jdbcType=INTEGER},
+      </if>
+      <if test="logincount != null">
+        logincount = #{logincount,jdbcType=INTEGER},
+      </if>
+      <if test="isCheked != null">
+        is_cheked = #{isCheked,jdbcType=INTEGER},
+      </if>
+      <if test="registerip != null">
+        registerip = #{registerip,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendPointState != null">
+        recommend_point_state = #{recommendPointState,jdbcType=INTEGER},
+      </if>
+      <if test="lastSendEmail != null">
+        last_send_email = #{lastSendEmail,jdbcType=INTEGER},
+      </if>
+      <if test="infoFull != null">
+        info_full = #{infoFull,jdbcType=INTEGER},
+      </if>
+      <if test="findCode != null">
+        find_code = #{findCode,jdbcType=VARCHAR},
+      </if>
+      <if test="face != null">
+        face = #{face,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="midentity != null">
+        midentity = #{midentity,jdbcType=INTEGER},
+      </if>
+      <if test="disabled != null">
+        disabled = #{disabled,jdbcType=SMALLINT},
+      </if>
+      <if test="storeId != null">
+        store_id = #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="isStore != null">
+        is_store = #{isStore,jdbcType=INTEGER},
+      </if>
+      <if test="wxOpenid != null">
+        wx_openid = #{wxOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="wxUnionid != null">
+        wx_unionid = #{wxUnionid,jdbcType=VARCHAR},
+      </if>
+      <if test="encryptKey != null">
+        encrypt_key = #{encryptKey,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where member_id = #{memberId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.yetoop.cloud.atlas.domain.EsMember">
+    update es_member
+    set agentid = #{agentid,jdbcType=INTEGER},
+      parentid = #{parentid,jdbcType=INTEGER},
+      lv_id = #{lvId,jdbcType=INTEGER},
+      uname = #{uname,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      regtime = #{regtime,jdbcType=BIGINT},
+      pw_answer = #{pwAnswer,jdbcType=VARCHAR},
+      pw_question = #{pwQuestion,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      birthday = #{birthday,jdbcType=BIGINT},
+      advance = #{advance,jdbcType=DECIMAL},
+      province_id = #{provinceId,jdbcType=INTEGER},
+      city_id = #{cityId,jdbcType=INTEGER},
+      region_id = #{regionId,jdbcType=INTEGER},
+      town_id = #{townId,jdbcType=INTEGER},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      region = #{region,jdbcType=VARCHAR},
+      town = #{town,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      zip = #{zip,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      point = #{point,jdbcType=INTEGER},
+      mp = #{mp,jdbcType=INTEGER},
+      QQ = #{qq,jdbcType=VARCHAR},
+      msn = #{msn,jdbcType=VARCHAR},
+      lastlogin = #{lastlogin,jdbcType=BIGINT},
+      is_agent = #{isAgent,jdbcType=INTEGER},
+      logincount = #{logincount,jdbcType=INTEGER},
+      is_cheked = #{isCheked,jdbcType=INTEGER},
+      registerip = #{registerip,jdbcType=VARCHAR},
+      recommend_point_state = #{recommendPointState,jdbcType=INTEGER},
+      last_send_email = #{lastSendEmail,jdbcType=INTEGER},
+      info_full = #{infoFull,jdbcType=INTEGER},
+      find_code = #{findCode,jdbcType=VARCHAR},
+      face = #{face,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      midentity = #{midentity,jdbcType=INTEGER},
+      disabled = #{disabled,jdbcType=SMALLINT},
+      store_id = #{storeId,jdbcType=INTEGER},
+      is_store = #{isStore,jdbcType=INTEGER},
+      wx_openid = #{wxOpenid,jdbcType=VARCHAR},
+      wx_unionid = #{wxUnionid,jdbcType=VARCHAR},
+      encrypt_key = #{encryptKey,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=LONGVARCHAR}
+    where member_id = #{memberId,jdbcType=INTEGER}
+  </update>
+  
+</mapper>

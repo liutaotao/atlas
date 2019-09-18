@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="GBK"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/tx 
+        http://www.springframework.org/schema/tx/spring-tx.xsd  
+        http://www.springframework.org/schema/task 
+        http://www.springframework.org/schema/task/spring-task.xsd">
+
+	<import resource="classpath:spring/spring-service.xml" />
+	<import resource="classpath:spring/mqConsumerContext.xml" />
+<!-- 	<import resource="classpath:spring/mvcContext.xml" /> -->
+
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<array>
+				<value>classpath:admin.properties</value>
+			</array>
+		</property>
+	</bean>
+
+	<!-- 线程池配置 -->
+	<bean id="threadPool"
+		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<!-- 核心线程数 -->
+		<property name="corePoolSize" value="${admin_pool_corePoolSize}" />
+		<!-- 最大线程数 -->
+		<property name="maxPoolSize" value="${admin_pool_maxPoolSize}" />
+		<!-- 队列最大长度 -->
+		<property name="queueCapacity" value="1000" />
+		<!-- 线程池维护线程所允许的空闲时间 -->
+		<property name="keepAliveSeconds" value="300" />
+		<!-- 线程池对拒绝任务(无线程可用)的处理策略 -->
+		<property name="rejectedExecutionHandler">
+			<bean class="java.util.concurrent.ThreadPoolExecutor$CallerRunsPolicy" />
+		</property>
+	</bean>
+
+
+	<!-- 包扫描 -->
+	<context:component-scan base-package="com.yetoop.cloud.atlas" />
+
+
+	<!-- 开启这个配置，spring才能识别@Scheduled注解 -->
+	<task:annotation-driven scheduler="qbScheduler"
+		mode="proxy" />
+	<task:scheduler id="qbScheduler" pool-size="10" />
+</beans>

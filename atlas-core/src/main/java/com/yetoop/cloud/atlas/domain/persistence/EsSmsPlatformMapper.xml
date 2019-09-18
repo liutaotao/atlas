@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yetoop.cloud.atlas.domain.persistence.EsSmsPlatformMapper">
+  <resultMap id="BaseResultMap" type="com.yetoop.cloud.atlas.domain.EsSmsPlatform">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="platform_name" jdbcType="VARCHAR" property="platformName" />
+    <result column="is_open" jdbcType="INTEGER" property="isOpen" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.yetoop.cloud.atlas.domain.EsSmsPlatform">
+    <result column="config" jdbcType="LONGVARCHAR" property="config" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, platform_name, is_open, code
+  </sql>
+  <sql id="Blob_Column_List">
+    config
+  </sql>
+  <select id="queryOpenSmsPlatform" resultMap="ResultMapWithBLOBs">
+  	select 
+	<include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+	from es_sms_platform 
+	where is_open=1
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from es_sms_platform
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from es_sms_platform
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yetoop.cloud.atlas.domain.EsSmsPlatform">
+    insert into es_sms_platform (id, platform_name, is_open, 
+      code, config)
+    values (#{id,jdbcType=INTEGER}, #{platformName,jdbcType=VARCHAR}, #{isOpen,jdbcType=INTEGER}, 
+      #{code,jdbcType=VARCHAR}, #{config,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yetoop.cloud.atlas.domain.EsSmsPlatform">
+    insert into es_sms_platform
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="platformName != null">
+        platform_name,
+      </if>
+      <if test="isOpen != null">
+        is_open,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="config != null">
+        config,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="platformName != null">
+        #{platformName,jdbcType=VARCHAR},
+      </if>
+      <if test="isOpen != null">
+        #{isOpen,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="config != null">
+        #{config,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yetoop.cloud.atlas.domain.EsSmsPlatform">
+    update es_sms_platform
+    <set>
+      <if test="platformName != null">
+        platform_name = #{platformName,jdbcType=VARCHAR},
+      </if>
+      <if test="isOpen != null">
+        is_open = #{isOpen,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="config != null">
+        config = #{config,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.yetoop.cloud.atlas.domain.EsSmsPlatform">
+    update es_sms_platform
+    set platform_name = #{platformName,jdbcType=VARCHAR},
+      is_open = #{isOpen,jdbcType=INTEGER},
+      code = #{code,jdbcType=VARCHAR},
+      config = #{config,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yetoop.cloud.atlas.domain.EsSmsPlatform">
+    update es_sms_platform
+    set platform_name = #{platformName,jdbcType=VARCHAR},
+      is_open = #{isOpen,jdbcType=INTEGER},
+      code = #{code,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

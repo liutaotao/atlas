@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+	    <meta content="telephone=no" name="format-detection"/>
+		<title>主页</title>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="lib/layer/css/layui.css"/>
+		<link rel="stylesheet" type="text/css" href="lib/layer/css/modules/layer/default/layer.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+	</head>
+	<body>
+		
+		<div class="layui-layout layui-layout-admin layui-layout-nofoot layui-layout-nonav">
+		  <div class="layui-header">
+		    <div class="header-left">
+		    	<a href="javascript:void(0)" class="back" id="back"></a>
+		    	<span class="input-wrap">
+		    		<span style="opacity: 0;" class="name-span" id="name-span">未命名</span>
+		    		<input type="text" placeholder="未命名" value="未命名" id="file-name"/>
+		    		<div class="re-name">重命名</div>
+		    	</span>
+		    	<div class="file-update-time" id="file-update-time"></div>
+		    </div>
+		    <div class="header-right">
+		    	<a href="javascript:void(0)" class="more setting doc-event" data-type="showMore"></a>
+		    	<a href="javascript:void(0)" class="share doc-event" data-type="showShare">分享</a>
+		    	<a href="javascript:void(0)" class="user-avatar header-event left-155" data-type="hUserSetting">
+		    		<div id="memberface"></div>
+		    	</a>
+		    	
+		    	
+		    	<div id="share-box" class="share-box" style="display: none;">
+					<a href="javascript:void(0)" class="doc-event" data-type="shareDoc">
+						<p>公开链接分享</p>
+						<p>有链接的人可以查看</p>
+					</a>
+					<a href="javascript:void(0)" class="doc-event" data-type="privateDoc">
+						<p>私有文档</p>
+						<p>只有自己可以查看和编辑</p>
+					</a>
+				</div>
+				<div id="share-href-box" class="share-href-box" style="display: none;">
+					<div class="title">
+						<p>公开链接分享</p>
+						<p>有链接的人可以查看</p>
+						<a href="javascript:void(0)" class="layui-btn layui-btn-primary cancel doc-event" data-type="privateDoc" >取消分享</a>
+					</div>
+					<div class="layer-form-1 share-href ">
+						<div class="layui-input-block">
+						    <input type="text" name="viewUrl" lay-verify="viewUrl" autocomplete="off" class="layui-input"style="padding-right: 60px;">
+							<a href="javascript:void(0)">复制链接</a>    
+						</div>
+						<div class="share-ewm">
+							<img />
+							<p>扫一扫</p>
+							<p>分享给朋友</p>
+						</div>
+					</div>
+				</div>
+		    </div>
+		  </div>
+		  <div class="layui-body">
+		  	<a href="javascript:void(0)" class="layui-btn layui-btn-fb doc-event" data-type="feedBack">反馈</a>
+		  	<div class="doc-page">
+		  		<div class="doc-btns">
+		  			<a id="new" data-type="createArtItem" href="javascript:void(0)" class="doc-event layui-btn layui-btn-primary">添加</a>
+		  			<a id="edit" data-type="editDoc" href="javascript:void(0)" class="doc-event layui-btn layui-btn-primary">编辑</a>
+		  			<a id="preview" data-type="previewDoc" href="javascript:void(0)" class="doc-event layui-btn layui-btn-primary">预览</a>
+		  		</div>
+		  		<div class="doc-content">
+		  			<ul class="alist">
+						<!-- <li>
+							<img src="https://zhenyiart.oss-cn-beijing.aliyuncs.com/zhenyiart/ai-mall/goods201705051117553897.jpg?x-oss-process=image/resize,w_+2000,h_2000,m_fill/auto-orient,1/quality,q_90/format,src"/>
+							<h3>张艳  Zhang yan</h3>
+							<p>一朵牡丹的肖像 APortrait of peony</p>
+							<p>布面油画 Oil on canvas</p>
+							<p>40x50cm 2017</p>
+							<p class="price"> ￥22500</p>
+						</li> -->
+					</ul>
+		  		</div>
+		  	</div>
+		  </div>
+		</div>
+	
+		<div id="new-doc-item" class="new-doc-item" style="display:none;">
+			<div class="layui-form-item">
+			    <div class="layui-input-block">
+			      <input id="art-pic" type="file" require="true" accept="image/*" name="imageUrl" placeholder="作品图片" class="layui-input disabled">
+			    </div>
+			  </div>
+			  <div class="layui-form-item">
+			    <div class="layui-input-block">
+			      <input type="text" name="artistName" require="true" placeholder="作者姓名" autocomplete="off" class="layui-input disabled" value="">
+			    </div>
+			  </div>
+			  <div class="layui-form-item">
+			    <div class="layui-input-block">
+			      <input type="text" name="artworkName" require="true" placeholder="作品名称" autocomplete="off" class="layui-input disabled" value="">
+			    </div>
+			  </div>
+			  <div class="layui-form-item">
+			    <div class="layui-input-block">
+			      <input type="text" name="material" require="true" placeholder="材质" autocomplete="off" class="layui-input disabled" value="">
+			    </div>
+			  </div>
+			  <div class="layui-form-item">
+			    <div class="layui-input-block">
+			      <input type="text" name="dimension" require="true" placeholder="尺寸" autocomplete="off" class="layui-input disabled" value="">
+			    </div>
+			  </div>
+			  <div class="layui-form-item">
+			    <div class="layui-input-block">
+			      <input type="text" name="createYear" require="false" placeholder="创作年代" autocomplete="off" class="layui-input disabled" value="">
+			    </div>
+			  </div>
+			  <div class="layui-form-item">
+			    <div class="layui-input-block">
+			      <input type="text" name="price" require="true" placeholder="价格" autocomplete="off" class="layui-input disabled" value="">
+			    </div>
+			  </div>
+		</div> 
+		
+		<div id="edit_doc_box" class="edit_doc_box" style="display:none">
+			<ul>
+				<!-- <li>
+					<div class="pic" style="background-image: url(https://zhenyiart.oss-cn-beijing.aliyuncs.com/zhenyiart/ai-mall/goods201705051117553897.jpg?x-oss-process=image/resize,w_+2000,h_2000,m_fill/auto-orient,1/quality,q_90/format,src);"></div>
+					<span>张艳  Zhang yan / 一朵牡丹的肖像 APortrait of peony / 布面油画 Oil on canvas / 40x50cm 2017 / ￥22500</span>
+					<a href="javascript:void(0)" class="del"></a>
+					<a href="javascript:void(0)" class="sort"></a>
+				</li> -->
+			</ul>
+			
+		</div>
+
+<!--
+	作者：ws_tien@163.com
+	时间：2017-07-20
+	描述：header 中通过接口填充
+-->	
+    <div id="header-user-setting"
+		class="header-user-setting layui-layer-wrap" style="display:none;">
+		<div class="arrow"></div>
+		<ul>
+			<li><a href="javascript:void(0)"><p></p>
+					<p></p></a></li>
+			<li><a class="header-event" data-type="hUserInfo"
+				href="javascript:void(0)">账号设置</a></li>
+			<li><a class="header-event" href="javascript:void(0)" data-type="logout">退出登录</a></li>
+		</ul>
+	</div>	
+<div id="header-user-content" class="header-user-content" style="display: none;">
+	<input type="file" accept="image/png,image/jpg,image/jpeg" name="face" hidden="hidden"/>
+	<div class="avatar">
+		<div class="pic"></div>
+		<a href="javascript:void(0)" id="changeFace">修改头像</a>
+	</div>
+	<div class="info">
+	  <div class="layui-form-item">
+	    <label class="layui-form-label">昵称</label>
+	    <div class="layui-input-block">
+	      <input type="text" name="nickname" lay-verify="required|title" required value="" autocomplete="off" class="disabled layui-input">
+	    </div>
+	  </div>
+	  <div class="layui-form-item">
+	    <label class="layui-form-label">手机号</label>
+	    <div class="layui-input-block">
+	      <input type="tel" disabled="disabled" name="mobile" lay-verify="phone" autocomplete="off" class="layui-input"  value="">
+	      <a class="header-event" href="javascript:void(0)" data-type="changeMobile">更换手机号</a>
+	    </div>
+	  </div>
+	  <div class="layui-form-item">
+	    <label class="layui-form-label">密码</label>
+	    <div class="layui-input-block">
+	      <input type="password" disabled="disabled" name="password" lay-verify="email" autocomplete="off" class="layui-input"  value="********"
+	      	style="letter-spacing: 3px;">
+	      <a class="header-event" href="javascript:void(0)" data-type="changePwd">修改密码</a>
+	    </div>
+	  </div>
+	  <div class="layui-form-item">
+	    <label class="layui-form-label">微信</label>
+	    <div class="layui-input-block">
+	      <span data-bind="true"  style="display:none;">已绑定</span><a class="header-event normal" href="javascript:void(0)" data-type="unbindWX" style="display:none;" data-bind="true">解除绑定</a>
+	      <a class="header-event normal" href="javascript:void(0)" data-type="bindWX" style="display:none;" data-bind="false">绑定微信</a>
+	    </div>
+	  </div>
+	</div>
+</div>
+<!--
+	作者：ws_tien@163.com
+	时间：2017-07-20
+	描述：修改手机号
+-->
+<div id="header-user-changeMobile" class="layer-form-1 header-user-changeMobile" style="display: none;">
+	<div class="layui-form-item">
+	    <div class="layui-input-block">
+	      <input type="tel" name="mobile" lay-verify="phone" autocomplete="off" class="layui-input disabled" placeholder="新手机号">
+	    </div>
+	  </div>
+	  <div class="layui-form-item">
+	    <div class="layui-input-block">
+	      <input type="tel" name="vCode" lay-verify="email" autocomplete="off" class="layui-input disabled" placeholder="短信验证码">
+	      <a href="javascript:void(0)" id="getVCode">获取验证码</a>
+	    </div>
+	  </div>
+</div>
+<!--
+	作者：ws_tien@163.com
+	时间：2017-07-20
+	描述：修改密码
+-->
+<div id="header-user-changePwd" class="layer-form-1 header-user-changePwd" style="display: none;">
+	<div class="layui-form-item">
+	    <div class="layui-input-block">
+	      <input type="password" name="password" lay-verify="password" autocomplete="off" class="layui-input disabled" placeholder="当前密码">
+	    </div>
+	  </div>
+	<div class="layui-form-item">
+	    <div class="layui-input-block">
+	      <input type="password" name="password1" lay-verify="password" autocomplete="off" class="layui-input disabled" placeholder="新密码">
+	    </div>
+	  </div>
+	 <div class="layui-form-item">
+	    <div class="layui-input-block">
+	      <input type="password" name="password2" lay-verify="password" autocomplete="off" class="layui-input disabled" placeholder="再次输入新密码">
+	    </div>
+	  </div>
+</div>
+		<script type="text/javascript" src="lib/jquery-2.2.3.min.js" ></script>
+		<script type="text/javascript" src="lib/clipboard.min.js"></script>
+		<script type="text/javascript" src="lib/jquery-ui.min.js" ></script>
+		<script type="text/javascript" src="lib/layer/layui.js" ></script>
+		<script type="text/javascript" src="js/common.js" ></script>
+		<script type="text/javascript" src="js/utils.js" ></script>
+		<script type="text/javascript" src="js/module.js" ></script>
+		<script type="text/javascript" src="js/verifybar.js" ></script>
+		<script type="text/javascript" src="js/upload.js" ></script>
+		<script type="text/javascript" src="js/header.js" ></script>
+		<script type="text/javascript" src="js/document.js" ></script>
+	</body>
+</html>

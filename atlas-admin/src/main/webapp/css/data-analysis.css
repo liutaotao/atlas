@@ -1,0 +1,513 @@
+.layui-layout-admin .layui-side{
+	background-color:#f6f6f6;
+}
+.layui-body{
+	min-width:1150px;
+}
+.analysis > .title{
+	position:absolute;
+	top:50px;
+	font-size:15px;
+}
+.works-list{
+	margin-top:90px;
+	width:170px;
+    max-height: 510px;
+    overflow: hidden;
+    float:left;
+}
+.works-list ul{
+	padding-bottom:20px;
+	overflow-y: scroll;
+	max-height: 500px;
+	width: 190px;
+}
+.works-list ul li{
+	padding:20px 0 20px 50px;
+	background:url(../img/icon_file.png) 10px no-repeat;
+	background-size:30px;
+	border:1px solid #f6f6f6;
+	width: 100px;
+    border-radius: 2px;
+    position:relative;
+    margin-top: 3px;
+}
+.works-list ul li:hover,.works-list ul li.on{
+	background-color:#F0F1F3;
+	border:1px solid #E4E4E4;
+}
+.works-list ul li.on:before{
+	content: "";
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 12px solid #fff;
+    position: absolute;
+    right: -20px;
+    top: 18px;
+}
+.works-list ul li p{
+	color:#515151;
+	font-size:13px;
+	padding-right:5px;
+	text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.works-list::-webkit-scrollbar,
+.middle-list::-webkit-scrollbar{
+	display:none;
+}
+
+.middle-list{
+	margin-top:80px;
+	width:158px;
+	height:520px;
+	float:left;
+    border-radius: 4px;
+	overflow: hidden;
+}
+.middle-list .work-info{
+	padding: 20px 0 20px 50px;
+    background: url(../img/icon_file.png) 10px no-repeat;
+    background-size: 30px;
+    border: 1px solid #f6f6f6;
+    width: 90px;
+    border-radius: 2px;
+    position: relative;
+    margin-top: 3px;	
+    text-overflow:ellipsis;
+	white-space:nowrap;
+	overflow:hidden;
+}
+.middle-list .box{
+	width:178px;
+	height:453px;
+    border-radius: 4px;
+	overflow-y: scroll;
+}
+.middle-list .box .title{
+	background-color:#fff;
+	color:#B6B6B6;
+	font-size:12px;
+	text-indent: 10px;
+	padding:3px 0 5px;
+	width:140px;
+	box-shadow: 1px 4px 20px rgba(0,0,0,.1);
+	border-radius: 3px;
+}
+.middle-list ul{
+	width:130px;
+	min-height: 418px;
+	padding-right:10px;
+	padding-top:5px;
+	margin-top:-4px;
+	background-color:#fff;
+	box-shadow: 3px 5px 10px rgba(0,0,0,.1);
+	border-radius: 3px;
+    margin-bottom: 10px;
+}
+.middle-list ul li{
+	width:120px;
+	margin-left:1px;
+	padding:5px 8px 7px;
+	border-radius: 1px;
+	position:relative;
+	border:1px solid #fff;
+}
+.middle-list ul li:hover,.middle-list ul li.on{
+	border:1px solid #62D4C0;
+}
+.middle-list ul li.on:before{
+	content: "";
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 12px solid #fff;
+    position: absolute;
+    right: -22px;
+    top: 50px;
+}
+.middle-list ul li .content{
+	line-height: 14px;
+}
+.middle-list ul li .content .name{
+	color:#000;
+	font-size:14px;
+	margin-top:3px;	
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	overflow:hidden;
+}
+.middle-list ul li .content .name span{
+	font-size:12px;
+	color:#B4B4B4;
+}
+.middle-list ul li .content .author{
+	color:#B6B6B6;
+	font-size:11px;
+}
+.middle-list ul.artwork li div.avatar{
+	width:120px;
+	height:90px;
+	background:center no-repeat;
+	background-size:contain;
+	background-color:#2b2b2b;
+}
+.middle-list ul.artwork li .layui-progress{
+	width:110px;
+	height:5px;
+	background-color:#F6F6F6;
+	margin-top:3px;
+}
+.layui-bg-red{
+	height:5px;
+	background-color:#ED7B77 !important;
+}
+.middle-list ul.artwork li .layui-progress{
+	width:120px;
+	height:5px;
+	background-color:#F6F6F6;
+	margin-top:3px;
+}
+.middle-list ul.user li{
+	padding-left:40px;
+	width:96px;
+	margin-top:5px;	
+	height:30px;
+    padding: 10px 0 10px 40px;
+}
+.middle-list ul.user li div.avatar{
+	width:25px;
+	height:25px;
+	background:center no-repeat;
+	background-size:cover;
+    background-color: #fff;
+    position: absolute;
+    left: 5px;
+    top:12px;
+    border-radius: 100%;
+}
+.middle-list ul.user li .layui-progress{
+	width:90px;
+	height:4px;
+	background-color:#F6F6F6;
+	margin-top:4px;
+}
+.middle-list ul.user li .layui-progress .layui-bg-red{
+	height:4px;
+}
+.middle-list ul.user li.on:before{
+    top: 14px;
+    right:-22px;
+}
+.middle-list ul .load-more{
+    text-align: center;
+    font-size: 12px;
+    padding-bottom: 10px;
+    color: #adadad;
+    display: block;
+}
+
+.data-content{
+	margin-top:40px;
+	width:890px;
+	height:560px;
+	border-radius: 3px;
+	float:left;
+	overflow: hidden;
+}
+.data-box{
+	width: 910px;
+    max-height: 550px;
+    overflow-y: scroll;
+    padding-bottom:10px;
+}
+.data-ul{
+    border-radius: 4px;
+	background-color: #fff;
+    width: 880px;
+    min-height: 550px;
+    box-shadow: 1px 4px 20px rgba(0,0,0,.1);    
+    position: relative;
+}
+.data-ul a.back{
+	width:80px;
+	height:34px;
+	line-height:34px;
+	text-indent:30px;
+	background:#fff url(../img/icon_back_arrow.png) 10px no-repeat;
+	background-size:7px;
+	display:inline-block;
+	border:1px solid #bbb;
+	border-radius:3px;    
+	margin: 15px 0 0 15px;
+	display:none;
+}
+.data-ul .user-info-box{
+	position:absolute;
+	right:30px;
+	top:30px;
+    text-indent: 60px;
+    font-size:15px;
+    display:none;
+}
+.data-ul .user-info-box .avatar{
+    position: absolute;
+    top: -2px;
+    width: 40px;
+    height: 40px;
+    border-radius: 30px;
+    background: center no-repeat;
+    background-size: cover;
+}
+.data-ul .user-info-box p:last-child{
+	font-size: 12px;
+    margin-top: 3px;
+    color: #4C4C4C;
+}
+.data-box .content-box{
+	padding:10px 20px 0;
+}
+.data-box .content-box .content-box-title{
+	height:40px;
+	line-height: 40px;
+	position:relative;
+	text-align: left;
+}
+.data-box .content-box .content-box-title p{
+	color:#000;
+	font-size:14px;
+	text-indent: 20px;
+	position:relative;
+}/* 
+.data-box .content-box .content-box-title p:before{
+	content:"";
+	width:4.2px;
+	height:4.2px;
+	background-color:#000;
+	position:absolute;
+	left:5px;
+	top:16px;
+	-ms-transform: rotate(45deg) scale(1.2);
+	-moz-transform: rotate(45deg) scale(1.2);
+	-o-transform: rotate(45deg) scale(1.2);
+	-webkit-transform: rotate(45deg) scale(1.2);
+	transform: rotate(45deg) scale(1.2);
+} */
+.data-box .content-box .content-box-title p span{
+	color:#B7B7B7;
+	font-weight: normal;
+	font-size:12px;
+}
+.data-box .content-box .content-box-title .search{
+	width:260px;
+	height:28px;
+	line-height:28px;
+	border-radius: 30px;
+	border:1px solid #f6f6f6;
+	background:url(../img/icon_search.png) 10px no-repeat;
+	background-size:14px;
+	position:absolute;
+	right:10px;
+	top:6px;
+}
+.data-box .content-box .content-box-title .search input{
+	width:225px;
+	border:none;
+	font-size:12px;
+	margin-left: 30px;
+}
+.data-box .content-box .show-all{
+	width:130px;
+	height:34px;
+	line-height: 34px;
+	font-size:12px;
+}
+.data-box .content-box .show-all:hover{
+	border-color:#c9c9c9;
+}
+.situation .time-btns{
+	margin-left:0;
+}
+.situation .time-btns .layui-btn{
+	height:32px;
+	line-height: 32px;
+	font-size:13px;
+	width:80px;
+	padding:0 10px;
+	color:#000;
+}
+.situation .time-btns .layui-btn:hover{
+	border-color:#2ACAAE;
+}
+.situation .time-btns .layui-btn.on{
+	border-color:#2ACAAE;
+	background-color:#2ACAAE;
+	color:#fff;
+}
+.time-range{
+	text-align: left;
+	font-size:13px;
+	margin-left:10px;
+	width:225px;
+	height:30px;
+	line-height: 30px;
+	border:1px solid #C9C9C9;
+	border-radius: 2px;
+	background:url(../img/icon_calendar.png) 200px 5px no-repeat;
+	background-size:18px;
+	display:inline-block;
+}
+.time-range input{
+	border:none;
+	width:90px;
+	text-align: center;
+	font-size:14px;
+}
+.situation{
+	text-align:center;
+}
+.situation .siton-btns{
+	margin-top:20px;
+}
+.situation .siton-btns .layui-btn{
+	height:80px;
+	width:110px;
+	padding:15px;
+	line-height:24px;
+	color:#000;
+}
+.situation .siton-btns .layui-btn p:last-child{
+	font-size:12px;
+}
+.situation .siton-btns .layui-btn span{
+	font-size:20px;
+	font-weight: bold;
+	margin-right:5px;
+}
+.situation .siton-btns .layui-btn:hover{
+	border-color:#B2EBE1;
+}
+.situation .siton-btns .layui-btn.on{
+	border-color:#B2EBE1;
+	background-color:#F1FBFA;
+}
+/**
+ * table nob
+ */
+.layui-table-view,.layui-table-header,.layui-table th{
+	border:none;
+}
+.layui-table-header{
+	border-bottom:1px solid #f0f0f0;
+	background-color:#fff;
+}
+.layui-table thead tr{
+	background-color:#fff;
+}
+.layui-table th{
+	font-size:12px;
+	font-weight: bold;
+	text-align: center;
+}
+.layui-table th .layui-table-cell{
+	padding:0;
+}
+.layui-table-view .layui-table td .layui-table-cell{
+	text-align: center;
+	line-height:50px;
+	height:50px;
+}
+
+.layui-table-view .layui-table td .avatar{
+	width:44px;
+	height:44px;
+	background:center no-repeat;
+	background-size:cover;
+	border-radius: 100%;
+	margin-top:3px;
+	margin-left:2px;
+}
+.layui-table-view .layui-table td .pic{
+	width:64px;
+	height:44px;
+	background:center no-repeat #2b2b2b;
+	background-size:contain;
+	margin-top:3px;
+	margin-left:2px;
+}
+.layui-table-tool{
+	text-align:center;
+	background-color:#fff;
+	border-top:none;
+}
+.layui-table-tool .layui-laypage-count,
+.layui-table-tool .layui-laypage-limits,
+.layui-table-tool .layui-laypage button{
+	display:none;
+}
+.layui-table-tool .layui-laypage span.layui-laypage-curr, .layui-table-tool .layui-laypage a{
+	border:1px solid #ededed;
+	margin-right:10px;
+	border-radius:5px;
+}
+.layui-table-tool .layui-laypage input{
+	width:50px;
+	border-radius:5px;
+}
+.layui-table-tool .layui-icon{
+	font-size:12px;
+}
+.chart-box{
+	margin-top:10px;
+}
+.chart-box .chart-box-title{
+	height:40px;
+	line-height: 40px;
+	position:relative;
+	text-align: left;
+	color:#494949;
+	text-align: left;
+	font-size:14px;
+	font-weight: bold;
+	text-indent: 20px;
+	position:relative;
+}
+.chart-box .chart-box-title:before{
+	content:"";
+	width:5px;
+	height:14px;
+	background-color:#494949;
+	position:absolute;
+	left:10px;
+	top:13px;
+}
+
+.layui-tab .layui-tab-title li{
+	color:#B9BDC3;
+	padding:0;
+	margin-right:25px;
+}
+.layui-tab .layui-tab-title li:nth-child(n+2){
+	margin:0 25px;
+}
+.layui-tab .layui-tab-title li.layui-this{
+	color:#404851;
+	font-weight: bold;
+}
+.layui-tab-brief > .layui-tab-title .layui-this:after, .layui-tab-brief > .layui-tab-more li.layui-this:after{
+	border-bottom: 3px solid #000;
+}
+.layui-table-body .layui-none{
+	margin-top:50px;
+}
+.layui-table-body .layui-none img{
+	width:160px;
+}
+.layui-table-body .layui-none p{
+	font-size:12px;
+	color:#a5a5a5;
+}

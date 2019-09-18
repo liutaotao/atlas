@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		<div class="wx-bind" style="padding:20px 9px;"><div id="log-ewm"></div><p style="text-align:center;margin-top:8px;color:#3F464B;font-size:13px;">微信扫描即可绑定</p></div>
+		
+		<script type="text/javascript" src="lib/jquery-2.2.3.min.js" ></script>
+		<script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+		<script type="text/javascript" src="lib/layer/layui.js" ></script>
+		<script type="text/javascript" src="js/common.js" ></script>
+		<script type="text/javascript">
+			$(function(){
+				$.ajax({
+					url:config.ctx + '/admin/initWxPcBindConfig.do',
+					dataType:"json",
+					data:null,
+					type:"post", 
+					success:function(res){
+						if(parseInt(res.status) == 0){//成功
+							console.log(res)
+							var obj = new WxLogin({
+		                        id:"log-ewm", 
+		                        appid: res.app_id, 
+		                        scope: res.scope, 
+		                        redirect_uri: res.redirect_uri,
+		                        state: res.state,
+		                       /* style: "",
+		                        href: ""*///不能填本地地址
+		                      });
+						}else{//失败
+							console.log(res.msg)
+						}
+					},
+					error:function(res){
+						console.log(res)
+					}
+				})
+			})
+		</script>
+	</body>
+</html>

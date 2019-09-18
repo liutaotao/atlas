@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yetoop.cloud.atlas.domain.persistence.AsArtwork2WoksMapper">
+  <resultMap id="BaseResultMap" type="com.yetoop.cloud.atlas.domain.AsArtwork2WoksKey">
+    <id column="works_id" jdbcType="INTEGER" property="worksId" />
+    <id column="artwork_id" jdbcType="INTEGER" property="artworkId" />
+  </resultMap>
+  
+  <select id="selectArtworksByWorksId" parameterType="java.util.Map"
+  			resultMap="com.yetoop.cloud.atlas.domain.persistence.AsArtworkMapper.BaseResultMap">
+  	select 
+  	<include refid="com.yetoop.cloud.atlas.domain.persistence.AsArtworkMapper.Base_Column_List" />			
+  	from as_artwork_2_woks a2w,as_artwork a
+  	where a.state = '1'
+  		  and a.id = a2w.artwork_id
+  		  and a2w.works_id = #{worksId,jdbcType=INTEGER}
+  		  order by seq asc
+  </select>
+  
+  <select id="selectArtworkCountByWorksId" resultType="java.lang.Integer">
+  	select 
+  	COUNT(0) artworkCount 
+  	from as_artwork_2_woks a2w,as_artwork a
+  	where a.state = '1'
+  		  and a.id = a2w.artwork_id
+  		  and a2w.works_id = #{worksId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByWorksIdArtworkId" parameterType="java.util.Map"
+			resultMap="com.yetoop.cloud.atlas.domain.persistence.AsArtworkMapper.BaseResultMap">
+	select 
+  	<include refid="com.yetoop.cloud.atlas.domain.persistence.AsArtworkMapper.Base_Column_List" />			
+  	from as_artwork_2_woks a2w,as_artwork a
+  	where a.state = '1'
+  		  and a.id = a2w.artwork_id 
+  		  and a.id = #{artworkId,jdbcType=INTEGER}
+  		  and a2w.works_id = #{worksId,jdbcType=INTEGER}
+	</select>
+  
+  <select id="selectMaxSeq" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+  	select IFNULL(MAX(seq),-1) from
+  	as_artwork_2_woks a2w,as_artwork a
+  	where a.id = a2w.artwork_id
+  	and a2w.works_id = #{worksId,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="com.yetoop.cloud.atlas.domain.AsArtwork2WoksKey">
+    delete from as_artwork_2_woks
+    where works_id = #{worksId,jdbcType=INTEGER}
+      and artwork_id = #{artworkId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yetoop.cloud.atlas.domain.AsArtwork2WoksKey">
+    insert into as_artwork_2_woks (works_id, artwork_id)
+    values (#{worksId,jdbcType=INTEGER}, #{artworkId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yetoop.cloud.atlas.domain.AsArtwork2WoksKey">
+    insert into as_artwork_2_woks
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="worksId != null">
+        works_id,
+      </if>
+      <if test="artworkId != null">
+        artwork_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="worksId != null">
+        #{worksId,jdbcType=INTEGER},
+      </if>
+      <if test="artworkId != null">
+        #{artworkId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

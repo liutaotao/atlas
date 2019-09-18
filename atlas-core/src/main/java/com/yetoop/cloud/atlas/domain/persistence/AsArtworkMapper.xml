@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yetoop.cloud.atlas.domain.persistence.AsArtworkMapper">
+  <resultMap id="BaseResultMap" type="com.yetoop.cloud.atlas.domain.AsArtwork">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="intro" jdbcType="VARCHAR" property="intro" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="seq" jdbcType="INTEGER" property="seq" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="version" jdbcType="TIMESTAMP" property="version" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="state_date" jdbcType="TIMESTAMP" property="stateDate" />
+    <result column="own_member_id" jdbcType="INTEGER" property="ownMemberId" />
+    <result column="image_size" jdbcType="INTEGER" property="imageSize" />
+    <result column="big_image_url" jdbcType="VARCHAR" property="bigImageUrl" />
+    <result column="big_image_length" jdbcType="INTEGER" property="bigImageLength" />
+    <result column="big_image_height" jdbcType="INTEGER" property="bigImageHeight" />
+    <result column="big_image_size" jdbcType="INTEGER" property="bigImageSize" />
+    <result column="small_image_url" jdbcType="VARCHAR" property="smallImageUrl" />
+    <result column="small_image_length" jdbcType="INTEGER" property="smallImageLength" />
+    <result column="small_image_height" jdbcType="INTEGER" property="smallImageHeight" />
+    <result column="small_image_size" jdbcType="INTEGER" property="smallImageSize" />
+    <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
+    <result column="image_length" jdbcType="INTEGER" property="imageLength" />
+    <result column="image_height" jdbcType="INTEGER" property="imageHeight" />
+    <result column="artist_name" jdbcType="VARCHAR" property="artistName" />
+    <result column="artist_id" jdbcType="INTEGER" property="artistId" />
+    <result column="create_year" jdbcType="INTEGER" property="createYear" />
+    <result column="price" jdbcType="INTEGER" property="price" />
+    <result column="length" jdbcType="INTEGER" property="length" />
+    <result column="hight" jdbcType="INTEGER" property="hight" />
+    <result column="depth" jdbcType="INTEGER" property="depth" />
+    <result column="material_id" jdbcType="INTEGER" property="materialId" />
+    <result column="subject_id" jdbcType="INTEGER" property="subjectId" />
+    <result column="material" jdbcType="VARCHAR" property="material" />
+    <result column="dimension" jdbcType="VARCHAR" property="dimension" />
+    <association property="asMaterial" column="material_id" select="com.yetoop.cloud.atlas.domain.persistence.AsMaterialMapper.selectByPrimaryKey"></association>
+    <association property="artist" column="artist_id" select="com.yetoop.cloud.atlas.domain.persistence.AsArtistMapper.selectByPrimaryKey"></association>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, intro, name, seq, create_date, version, state, state_date, own_member_id, image_size, 
+    big_image_url, big_image_length, big_image_height, big_image_size, small_image_url, 
+    small_image_length, small_image_height, small_image_size, image_url, image_length, 
+    image_height, artist_name, artist_id, create_year, price, length, hight, depth, material_id, 
+    subject_id, material, dimension
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from as_artwork
+    where id = #{id,jdbcType=INTEGER} 
+    and state='1'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from as_artwork
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yetoop.cloud.atlas.domain.AsArtwork">
+    insert into as_artwork (id, intro, name, 
+      seq, create_date, version, 
+      state, state_date, own_member_id, 
+      image_size, big_image_url, big_image_length, 
+      big_image_height, big_image_size, small_image_url, 
+      small_image_length, small_image_height, small_image_size, 
+      image_url, image_length, image_height, 
+      artist_name, artist_id, create_year, 
+      price, length, hight, 
+      depth, material_id, subject_id,material, dimension
+      )
+    values (#{id,jdbcType=INTEGER}, #{intro,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{seq,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, #{version,jdbcType=TIMESTAMP}, 
+      #{state,jdbcType=VARCHAR}, #{stateDate,jdbcType=TIMESTAMP}, #{ownMemberId,jdbcType=INTEGER}, 
+      #{imageSize,jdbcType=INTEGER}, #{bigImageUrl,jdbcType=VARCHAR}, #{bigImageLength,jdbcType=INTEGER}, 
+      #{bigImageHeight,jdbcType=INTEGER}, #{bigImageSize,jdbcType=INTEGER}, #{smallImageUrl,jdbcType=VARCHAR}, 
+      #{smallImageLength,jdbcType=INTEGER}, #{smallImageHeight,jdbcType=INTEGER}, #{smallImageSize,jdbcType=INTEGER}, 
+      #{imageUrl,jdbcType=VARCHAR}, #{imageLength,jdbcType=INTEGER}, #{imageHeight,jdbcType=INTEGER}, 
+      #{artistName,jdbcType=VARCHAR}, #{artistId,jdbcType=INTEGER}, #{createYear,jdbcType=INTEGER}, 
+      #{price,jdbcType=INTEGER}, #{length,jdbcType=INTEGER}, #{hight,jdbcType=INTEGER}, 
+      #{depth,jdbcType=INTEGER}, #{materialId,jdbcType=INTEGER}, #{subjectId,jdbcType=INTEGER},
+      #{material,jdbcType=VARCHAR}, #{dimension,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yetoop.cloud.atlas.domain.AsArtwork">
+  	<selectKey keyProperty="id" resultType="int" order="AFTER">
+		SELECT 
+		LAST_INSERT_ID();
+	</selectKey>
+    insert into as_artwork
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="intro != null">
+        intro,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="seq != null">
+        seq,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="stateDate != null">
+        state_date,
+      </if>
+      <if test="ownMemberId != null">
+        own_member_id,
+      </if>
+      <if test="imageSize != null">
+        image_size,
+      </if>
+      <if test="bigImageUrl != null">
+        big_image_url,
+      </if>
+      <if test="bigImageLength != null">
+        big_image_length,
+      </if>
+      <if test="bigImageHeight != null">
+        big_image_height,
+      </if>
+      <if test="bigImageSize != null">
+        big_image_size,
+      </if>
+      <if test="smallImageUrl != null">
+        small_image_url,
+      </if>
+      <if test="smallImageLength != null">
+        small_image_length,
+      </if>
+      <if test="smallImageHeight != null">
+        small_image_height,
+      </if>
+      <if test="smallImageSize != null">
+        small_image_size,
+      </if>
+      <if test="imageUrl != null">
+        image_url,
+      </if>
+      <if test="imageLength != null">
+        image_length,
+      </if>
+      <if test="imageHeight != null">
+        image_height,
+      </if>
+      <if test="artistName != null">
+        artist_name,
+      </if>
+      <if test="artistId != null">
+        artist_id,
+      </if>
+      <if test="createYear != null">
+        create_year,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="length != null">
+        length,
+      </if>
+      <if test="hight != null">
+        hight,
+      </if>
+      <if test="depth != null">
+        depth,
+      </if>
+      <if test="materialId != null">
+        material_id,
+      </if>
+      <if test="subjectId != null">
+        subject_id,
+      </if>
+      <if test="material != null">
+        material, 
+      </if>
+      <if test="dimension != null">
+        dimension,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="intro != null">
+        #{intro,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="seq != null">
+        #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="stateDate != null">
+        #{stateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ownMemberId != null">
+        #{ownMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="imageSize != null">
+        #{imageSize,jdbcType=INTEGER},
+      </if>
+      <if test="bigImageUrl != null">
+        #{bigImageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bigImageLength != null">
+        #{bigImageLength,jdbcType=INTEGER},
+      </if>
+      <if test="bigImageHeight != null">
+        #{bigImageHeight,jdbcType=INTEGER},
+      </if>
+      <if test="bigImageSize != null">
+        #{bigImageSize,jdbcType=INTEGER},
+      </if>
+      <if test="smallImageUrl != null">
+        #{smallImageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="smallImageLength != null">
+        #{smallImageLength,jdbcType=INTEGER},
+      </if>
+      <if test="smallImageHeight != null">
+        #{smallImageHeight,jdbcType=INTEGER},
+      </if>
+      <if test="smallImageSize != null">
+        #{smallImageSize,jdbcType=INTEGER},
+      </if>
+      <if test="imageUrl != null">
+        #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="imageLength != null">
+        #{imageLength,jdbcType=INTEGER},
+      </if>
+      <if test="imageHeight != null">
+        #{imageHeight,jdbcType=INTEGER},
+      </if>
+      <if test="artistName != null">
+        #{artistName,jdbcType=VARCHAR},
+      </if>
+      <if test="artistId != null">
+        #{artistId,jdbcType=INTEGER},
+      </if>
+      <if test="createYear != null">
+        #{createYear,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="length != null">
+        #{length,jdbcType=INTEGER},
+      </if>
+      <if test="hight != null">
+        #{hight,jdbcType=INTEGER},
+      </if>
+      <if test="depth != null">
+        #{depth,jdbcType=INTEGER},
+      </if>
+      <if test="materialId != null">
+        #{materialId,jdbcType=INTEGER},
+      </if>
+      <if test="subjectId != null">
+        #{subjectId,jdbcType=INTEGER},
+      </if>
+      <if test="material != null">
+        #{material,jdbcType=VARCHAR}, 
+      </if>
+      <if test="dimension != null">
+        #{dimension,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yetoop.cloud.atlas.domain.AsArtwork">
+    update as_artwork
+    <set>
+      <if test="intro != null">
+        intro = #{intro,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="seq != null">
+        seq = #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="stateDate != null">
+        state_date = #{stateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ownMemberId != null">
+        own_member_id = #{ownMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="imageSize != null">
+        image_size = #{imageSize,jdbcType=INTEGER},
+      </if>
+      <if test="bigImageUrl != null">
+        big_image_url = #{bigImageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bigImageLength != null">
+        big_image_length = #{bigImageLength,jdbcType=INTEGER},
+      </if>
+      <if test="bigImageHeight != null">
+        big_image_height = #{bigImageHeight,jdbcType=INTEGER},
+      </if>
+      <if test="bigImageSize != null">
+        big_image_size = #{bigImageSize,jdbcType=INTEGER},
+      </if>
+      <if test="smallImageUrl != null">
+        small_image_url = #{smallImageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="smallImageLength != null">
+        small_image_length = #{smallImageLength,jdbcType=INTEGER},
+      </if>
+      <if test="smallImageHeight != null">
+        small_image_height = #{smallImageHeight,jdbcType=INTEGER},
+      </if>
+      <if test="smallImageSize != null">
+        small_image_size = #{smallImageSize,jdbcType=INTEGER},
+      </if>
+      <if test="imageUrl != null">
+        image_url = #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="imageLength != null">
+        image_length = #{imageLength,jdbcType=INTEGER},
+      </if>
+      <if test="imageHeight != null">
+        image_height = #{imageHeight,jdbcType=INTEGER},
+      </if>
+      <if test="artistName != null">
+        artist_name = #{artistName,jdbcType=VARCHAR},
+      </if>
+      <if test="artistId != null">
+        artist_id = #{artistId,jdbcType=INTEGER},
+      </if>
+      <if test="createYear != null">
+        create_year = #{createYear,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="length != null">
+        length = #{length,jdbcType=INTEGER},
+      </if>
+      <if test="hight != null">
+        hight = #{hight,jdbcType=INTEGER},
+      </if>
+      <if test="depth != null">
+        depth = #{depth,jdbcType=INTEGER},
+      </if>
+      <if test="materialId != null">
+        material_id = #{materialId,jdbcType=INTEGER},
+      </if>
+      <if test="subjectId != null">
+        subject_id = #{subjectId,jdbcType=INTEGER},
+      </if>
+       <if test="material != null">
+        material = #{material,jdbcType=VARCHAR}, 
+      </if>
+      <if test="dimension != null">
+        dimension = #{dimension,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yetoop.cloud.atlas.domain.AsArtwork">
+    update as_artwork
+    set intro = #{intro,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      seq = #{seq,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=VARCHAR},
+      state_date = #{stateDate,jdbcType=TIMESTAMP},
+      own_member_id = #{ownMemberId,jdbcType=INTEGER},
+      image_size = #{imageSize,jdbcType=INTEGER},
+      big_image_url = #{bigImageUrl,jdbcType=VARCHAR},
+      big_image_length = #{bigImageLength,jdbcType=INTEGER},
+      big_image_height = #{bigImageHeight,jdbcType=INTEGER},
+      big_image_size = #{bigImageSize,jdbcType=INTEGER},
+      small_image_url = #{smallImageUrl,jdbcType=VARCHAR},
+      small_image_length = #{smallImageLength,jdbcType=INTEGER},
+      small_image_height = #{smallImageHeight,jdbcType=INTEGER},
+      small_image_size = #{smallImageSize,jdbcType=INTEGER},
+      image_url = #{imageUrl,jdbcType=VARCHAR},
+      image_length = #{imageLength,jdbcType=INTEGER},
+      image_height = #{imageHeight,jdbcType=INTEGER},
+      artist_name = #{artistName,jdbcType=VARCHAR},
+      artist_id = #{artistId,jdbcType=INTEGER},
+      create_year = #{createYear,jdbcType=INTEGER},
+      price = #{price,jdbcType=INTEGER},
+      length = #{length,jdbcType=INTEGER},
+      hight = #{hight,jdbcType=INTEGER},
+      depth = #{depth,jdbcType=INTEGER},
+      material_id = #{materialId,jdbcType=INTEGER},
+      subject_id = #{subjectId,jdbcType=INTEGER},
+      material = #{material,jdbcType=VARCHAR},
+      dimension = #{dimension,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

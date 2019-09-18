@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head><link rel="stylesheet" type="text/css" href="css/data-analysis.css"/>
+	</head>
+	<body>
+		<div class="analysis">
+			<div class="title">数据分析</div>
+			
+			<div class="works-list" style="display:none;">
+				<ul id="works-list">
+					<!-- <li><p>风景作品集</p></li> -->
+				</ul>
+			</div>
+			
+			<div class="middle-list" style="display:none;">
+				<div class="work-info">风景作品集</div>
+				<div class="box">
+					<div class="title">共28件作品</div>
+					<ul class="artwork" id="artwork" style="display:none;">
+						<!-- <li>
+							<div class="avatar" style="background-image:url(https://zhenyiart.oss-cn-beijing.aliyuncs.com/zhenyiart/ai-mall/store/1/goods/201708111626000876.png?x-oss-process=image/resize,w_+800,h_800,m_fill/auto-orient,1/quality,q_90/format,src)"></div>
+							<div class="layui-progress">
+								<div class="layui-progress-bar layui-bg-red" lay-percent="30%"></div>
+							</div>
+							<div class="content">
+								<p class="name">我和你</p>
+								<p class="author">作者：王淑婷</p>
+							</div>
+						</li> -->
+					</ul>
+					<ul class="user" id="user" style="display:none;">
+						<!-- <li>
+							<div class="avatar" style="background-image:url(https://zhenyiart.oss-cn-beijing.aliyuncs.com/zhenyiart/ai-mall/store/1/goods/201708111626000876.png?x-oss-process=image/resize,w_+800,h_800,m_fill/auto-orient,1/quality,q_90/format,src)"></div>
+							<div class="content">
+								<p class="name">我和你</p>
+								<p class="author">王淑婷</p>
+							</div>
+							<div class="layui-progress">
+								<div class="layui-progress-bar layui-bg-red" lay-percent="30%"></div>
+							</div>
+						</li> -->
+					</ul>
+				</div>
+			</div>
+			
+			<div class="data-content" style="display:none;">
+				<div class="data-box">
+					<div class="data-ul" style="padding-top:1px;">
+					<a href="javascript:void(0)" class="back">返回</a>
+					<div class="user-info-box" id="user-info-box">
+						<div class="avatar"></div>
+						<p class="name"></p>
+						<p class="lastime"></p>
+					</div>
+					<div class="layui-tab layui-tab-brief">
+						<ul class="layui-tab-title" style="margin: 0 20px;">
+							<li class="layui-this" lay-id="1">概况</li>
+							<li lay-id="2">作品喜好分析</li>
+							<li lay-id="3">用户喜好分析</li>
+						</ul>
+						<div class="layui-tab-content">
+							<div class="layui-tab-item content-box  layui-show" id="situation-box">
+								<!-- <div class="content-box-title">
+									<p>概况<span></span></p>
+								</div> -->
+								<div class="situation">
+									<div class="time-btns">
+										<a href="javascript:void(0)" class="layui-btn layui-btn-primary on" data-type="0">全部</a>
+										<a href="javascript:void(0)" class="layui-btn layui-btn-primary" data-type="1">今日</a>
+										<a href="javascript:void(0)" class="layui-btn layui-btn-primary" data-type="2">昨日</a>
+										<a href="javascript:void(0)" class="layui-btn layui-btn-primary" data-type="3">最近7天</a>
+										<a href="javascript:void(0)" class="layui-btn layui-btn-primary" data-type="4">最近30天</a>
+										<!-- <div class="time-range">
+											<input type="text" id="range-start" value="2017-01-01"/>至<input type="text" id="range-end" value="2017-01-02"/>
+										</div> -->
+									</div>
+									<div class="siton-btns">
+										<a href="javascript:void(0)" class="layui-btn layui-btn-primary" id="sbtn-1"><p id="visitorCount"><span>20</span>人</p><p>浏览人数</p></a>
+										<a href="javascript:void(0)" class="layui-btn layui-btn-primary" id="sbtn-2"><p id="pageViewCount"><span>200</span>次</p><p>浏览次数</p></a>
+										<a href="javascript:void(0)" class="layui-btn layui-btn-primary" id="sbtn-3"><p id="averagDuration"><span>20</span>min</p><p>平均浏览时长</p></a>
+										<a href="javascript:void(0)" class="layui-btn layui-btn-primary" id="sbtn-4"><p id="viewRate"><span>15</span>%</p><p>平均展示率</p></a>	
+									</div>
+								</div>
+								<div class="chart-box" style="display:none;">
+									<div class="chart-box-title">趋势图<a href="javascript:void(0)" class="chart-icon"></a></div>
+									<div id="data-chart" style="width:750px;height:320px;"></div>
+								</div>
+								
+							</div>
+							<div class="layui-tab-item content-box" id="artwork-box">
+								<div class="content-box-title">
+									<p>作品喜好分析<span>（共28件作品）</span></p>
+								</div>
+								<table class="layui-table" id="artwork-data" style="display:none;"></table>
+								<div class='layui-btn layui-btn-primary show-all' style="display:none">展开全部</div>
+							</div>
+							<div class="layui-tab-item content-box" id="user-box">
+								<div class="content-box-title">
+									<p>用户喜好分析<span>（共28位用户）</span></p>
+									<div class="search">
+										<input type="text" name="keyword" placeholder="查找用户（请输入昵称或备注名）"/>
+									</div>
+								</div>
+								<table class="layui-table" id="user-data" style="display:none;"></table>
+								<div class='layui-btn layui-btn-primary show-all' style="display:none;">展开全部</div>
+							</div>
+						</div>
+					</div>
+					
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="lib/echarts.common.min.js" ></script>
+		<script type="text/javascript" src="js/data-analysis.js" ></script>
+		<script type="text/javascript">
+		</script>
+	</body>
+</html>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yetoop.cloud.atlas.domain.persistence.AsIndexLogMapper">
+	<resultMap id="BaseResultMap" type="com.yetoop.cloud.atlas.domain.AsIndexLog">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+		<result column="version" jdbcType="TIMESTAMP" property="version" />
+		<result column="index_type" jdbcType="VARCHAR" property="indexType" />
+		<result column="from_name" jdbcType="VARCHAR" property="fromName" />
+		<result column="from_id" jdbcType="INTEGER" property="fromId" />
+		<result column="target_name" jdbcType="VARCHAR" property="targetName" />
+		<result column="target_id" jdbcType="INTEGER" property="targetId" />
+		<result column="index_state" jdbcType="VARCHAR" property="indexState" />
+		<result column="index_date" jdbcType="TIMESTAMP" property="indexDate" />
+		<result column="from_data" jdbcType="LONGVARCHAR" property="fromData" />
+		<result column="target_data" jdbcType="LONGVARCHAR" property="targetData" />
+		<result column="index_info" jdbcType="LONGVARCHAR" property="indexInfo" />
+		<result column="ext_info" jdbcType="LONGVARCHAR" property="extInfo" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, create_date, version, index_type, from_name, from_id, target_name,
+		target_id,
+		index_state, index_date
+	</sql>
+	<sql id="Blob_Column_List">
+		from_data, target_data, index_info, ext_info
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from as_index_log
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+
+	<insert id="insertSelective" parameterType="com.yetoop.cloud.atlas.domain.AsIndexLog">
+		insert into as_index_log
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+			<if test="version != null">
+				version,
+			</if>
+			<if test="indexType != null">
+				index_type,
+			</if>
+			<if test="fromName != null">
+				from_name,
+			</if>
+			<if test="fromId != null">
+				from_id,
+			</if>
+			<if test="targetName != null">
+				target_name,
+			</if>
+			<if test="targetId != null">
+				target_id,
+			</if>
+			<if test="indexState != null">
+				index_state,
+			</if>
+			<if test="indexDate != null">
+				index_date,
+			</if>
+			<if test="fromData != null">
+				from_data,
+			</if>
+			<if test="targetData != null">
+				target_data,
+			</if>
+			<if test="indexInfo != null">
+				index_info,
+			</if>
+			<if test="extInfo != null">
+				ext_info,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="version != null">
+				#{version,jdbcType=TIMESTAMP},
+			</if>
+			<if test="indexType != null">
+				#{indexType,jdbcType=VARCHAR},
+			</if>
+			<if test="fromName != null">
+				#{fromName,jdbcType=VARCHAR},
+			</if>
+			<if test="fromId != null">
+				#{fromId,jdbcType=INTEGER},
+			</if>
+			<if test="targetName != null">
+				#{targetName,jdbcType=VARCHAR},
+			</if>
+			<if test="targetId != null">
+				#{targetId,jdbcType=INTEGER},
+			</if>
+			<if test="indexState != null">
+				#{indexState,jdbcType=VARCHAR},
+			</if>
+			<if test="indexDate != null">
+				#{indexDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="fromData != null">
+				#{fromData,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="targetData != null">
+				#{targetData,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="indexInfo != null">
+				#{indexInfo,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="extInfo != null">
+				#{extInfo,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.yetoop.cloud.atlas.domain.AsIndexLog">
+		update as_index_log
+		<set>
+			<if test="createDate != null">
+				create_date = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="version != null">
+				version = #{version,jdbcType=TIMESTAMP},
+			</if>
+			<if test="indexType != null">
+				index_type = #{indexType,jdbcType=VARCHAR},
+			</if>
+			<if test="fromName != null">
+				from_name = #{fromName,jdbcType=VARCHAR},
+			</if>
+			<if test="fromId != null">
+				from_id = #{fromId,jdbcType=INTEGER},
+			</if>
+			<if test="targetName != null">
+				target_name = #{targetName,jdbcType=VARCHAR},
+			</if>
+			<if test="targetId != null">
+				target_id = #{targetId,jdbcType=INTEGER},
+			</if>
+			<if test="indexState != null">
+				index_state = #{indexState,jdbcType=VARCHAR},
+			</if>
+			<if test="indexDate != null">
+				index_date = #{indexDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="fromData != null">
+				from_data = #{fromData,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="targetData != null">
+				target_data = #{targetData,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="indexInfo != null">
+				index_info = #{indexInfo,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="extInfo != null">
+				ext_info = #{extInfo,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+</mapper>
